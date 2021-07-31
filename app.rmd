@@ -1,8 +1,13 @@
-# print(source('exec_PLSROG.R'))
+---
+title: R Markdown
+output: html_document
+runtime: shiny
+---
+
+```{r, echo=FALSE, include=FALSE}
 
 rm( list=ls(all=TRUE) ) 
 library(shiny)
-library(rbokeh)
 library(tidytidbits) #isTruthy() に必要
 library(ggplot2)
 library(plotly)
@@ -293,3 +298,5 @@ server <- function(input, output, session) {
 
 # Create Shiny app ----
 shinyApp(ui, server)
+
+```
