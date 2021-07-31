@@ -1,14 +1,3 @@
-# PLS Application
-
----
-title: R Markdown
-output: html_document
-runtime: shiny
----
-
-Please refer to [here](https://github.com/Keisuke-H-Ota/PLS_App) for the input data format.
-
-```{r, echo=FALSE, message=FALSE}
 
 rm( list=ls(all=TRUE) ) 
 library(shiny)
@@ -18,12 +7,13 @@ library(plotly)
 
 # Define UI for dataset viewer app ----
 ui <- fluidPage(
-  navbarPage("",
-    titlePanel("naïve PLS & PLS-ROG"),
+  navbarPage(
+    title = "PLS ROG App",
     tabPanel("Analysis results",
       sidebarLayout(
         sidebarPanel(
           width = 4,
+          uiOutput("tab"),
           fileInput("RawData", "Choose TSV File", accept = ".tsv"),
           selectInput(
             inputId = "normalization",
@@ -127,6 +117,10 @@ ui <- fluidPage(
 
 # Define server logic to summarize and view selected dataset ----
 server <- function(input, output, session) {
+  url <- a("here", href="https://github.com/Keisuke-H-Ota/PLS_App")
+    output$tab <- renderUI({
+      tagList("Refer input data format", url)
+    })
   observeEvent(input$RawData, {
     # データの読み込み
     mbx <- read.table(file=input$RawData$datapath, sep="\t",header=F, quote='', comment.char="")
@@ -302,5 +296,3 @@ server <- function(input, output, session) {
 
 # Create Shiny app ----
 shinyApp(ui, server)
-
-```
