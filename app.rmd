@@ -1,10 +1,14 @@
+# PLS Application
+
 ---
 title: R Markdown
 output: html_document
 runtime: shiny
 ---
 
-```{r, echo=FALSE, include=FALSE}
+Please refer to [here](https://github.com/Keisuke-H-Ota/PLS_App) for the input data format.
+
+```{r, echo=FALSE, message=FALSE}
 
 rm( list=ls(all=TRUE) ) 
 library(shiny)
